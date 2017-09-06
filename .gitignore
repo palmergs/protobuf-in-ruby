@@ -1,4 +1,5 @@
 env
+python3
 setupenv.sh
 sourceme
 node_modules
