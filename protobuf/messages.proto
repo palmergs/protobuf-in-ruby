@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package bmore;
+
+message Activity {
+  int64 sent_at = 1;
+  int32 message_number = 2;
+  string sender = 3;
+  oneof event {
+    bmore.HttpRequest request = 4;
+    bmore.Chat chat = 5;
+  }
+}
+
+message Firewall {
+  bool block_it = 1;
+}
+
+message Conversation {
+  int64 sent_at = 1;
+  repeated bmore.Chat chats = 2;
+}
+
+message HttpRequest {
+ string ip = 3;
+ string request_method = 4;
+ string host = 5;
+ int32 port = 6;
+ string context = 7;
+ map<string, bmore.KeyValue> parameters = 8;
+ map<string, bmore.KeyValue> headers = 9; 
+}
+
+message KeyValue {
+  string key = 1;
+  repeated string value = 2;
+}
+
+message Chat {
+  enum Priority {
+    // UNDEFINED = 0;
+    LOW = 0;
+    MEDIUM = 1;
+    HIGH = 2;
+  }
+  enum ContentType {
+    // UNDEFINED = 0;
+    TEXT = 0;
+    HTML = 1;
+    MARKDOWN = 2;
+  }
+  string sender = 1;
+  string receiver = 2;
+  string text = 3;
+  bmore.Chat.Priority priority = 5;
+  bmore.Chat.ContentType content_type = 6;
+}
