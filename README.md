@@ -1,2 +1,3 @@
-# protobuf-in-ruby
-Example code for a Protobuf in Ruby talk for B'More Rails 
+# Google Protobuf (v3) In Ruby
+
+
