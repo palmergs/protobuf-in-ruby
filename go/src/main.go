@@ -1,13 +1,20 @@
 package main
 
 import (
-	//	"chat/bmore"
+	"chat/bmore"
 	"chat/tcp"
 	"fmt"
+	"log"
 )
 
 func main() {
+	fmt.Println("Building context...")
+	context, err := bmore.New()
+	if err != nil {
+		log.Fatalf("Unable to build new context :: %v", err)
+	}
+
 	fmt.Println("Starting up a new service...")
-	server := tcp.New()
+	server := tcp.New(context)
 	server.Listen()
 }

@@ -14,5 +14,9 @@ module Bmore
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # There are better ways of doing this (e.g. Railties) but I'm in a hurry
+    require 'bmore_middleware'
+    config.middleware.use BmoreMiddleware
   end
 end

@@ -1,4 +1,5 @@
 require 'bmore/messages_pb'
+require 'pp'
 
 class BmoreClient
 
@@ -26,6 +27,7 @@ class BmoreClient
   end
 
   def build_from event
+pp "event = #{ event } #{ event.class }"
     activity = Bmore::Activity.new(sent_at: time_ms, 
         message_number: (@messages_sent += 1),
         sender: 'Rails')
@@ -49,7 +51,9 @@ class BmoreClient
     socket.close_write
 
     response = socket.read
-    expected_response.decode(response)
+    decoded = expected_response.decode(response)
+pp "decoded message was #{ decoded.inspect } #{ decoded.class }"
+    decoded
   ensure
     socket.close if socket
   end

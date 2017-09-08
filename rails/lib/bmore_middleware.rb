@@ -1,10 +1,15 @@
 require 'rack'
+require 'pp'
 require 'bmore/messages_pb'
+require 'bmore_client'
 
 class BmoreMiddleware
 
+  attr_reader :app, :client
+
   def initialize app
     @app = app
+    @client = BmoreClient.new
   end
 
   def call env
@@ -13,21 +18,22 @@ class BmoreMiddleware
         request_method: request.request_method.to_s,
         host: request.host.to_s,
         port: request.port.to_i,
-        script: request.script.to_s,
+        script: request.script_name.to_s,
         path: request.path_info.to_s)
     append_parameters(message, request)
     append_headers(message, request)
 
-    if BmoreClient.block?(request)
+    if client.block?(message)
       [ 403, {}, [ "BOOM!" ]]
     else
-      @app.call(env)
+      app.call(env)
     end
   end
 
   def append_headers message, request
     request.each_header do |key, value|
-      kv = bmore.KeyValue(key: key.to_s)
+      next unless key.start_with?('HTTP')
+      kv = Bmore::KeyValue.new(key: key.to_s)
       if value.is_a?(Enumerable)
         value.each do |v|
           kv.value << v.to_s
@@ -55,13 +61,13 @@ class BmoreMiddleware
             nested_value)
       end
     elsif value.is_a?(Enumerable)
-      kv = bmore.KeyValue(key: key.to_s)
+      kv = Bmore::KeyValue.new(key: key.to_s)
       value.each do |v|
         kv.value << v.to_s
       end
       message.parameters["#{ key }[]"] = kv
     else
-      kv = bmore.KeyValue(key: key.to_s)
+      kv = Bmore::KeyValue.new(key: key.to_s)
       kv.value << value.to_s
       message.parameters[key] = kv
     end

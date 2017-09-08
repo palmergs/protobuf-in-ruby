@@ -3,9 +3,12 @@ package tcp
 import (
 	"bufio"
 	"bytes"
+	"chat/bmore"
 	"fmt"
+	"github.com/golang/protobuf/proto"
 	"log"
 	"net"
+	"time"
 )
 
 type Client struct {
@@ -15,6 +18,7 @@ type Client struct {
 
 type server struct {
 	address                  string
+	context                  *bmore.Context
 	onNewClientCallback      func(c *Client)
 	onClientConnectionClosed func(c *Client, err error)
 	onNewMessage             func(c *Client, message []byte)
@@ -88,10 +92,10 @@ func (s *server) Listen() {
 	}
 }
 
-func New() *server {
-	address := fmt.Sprintf("%s:%d", "localhost", 35555)
+func New(context *bmore.Context) *server {
+	address := fmt.Sprintf("%s:%d", "localhost", 35678)
 	log.Printf("Creating server with address: %v\n", address)
-	server := &server{address: address}
+	server := &server{context: context, address: address}
 	server.OnNewClient(func(c *Client) {
 		fmt.Println("A new client connected!")
 	})
@@ -103,15 +107,61 @@ func New() *server {
 	server.OnNewMessage(func(c *Client, bytes []byte) {
 		fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
 
-		// message := &bmore.Message{}
-		// err := proto.Unmarshal(bytes, message)
-		// if err != nil {
-		// 	fmt.Printf("Couldn't unmarshal message! %v\n", err)
-		// }
+		message := &bmore.Activity{}
+		err := proto.Unmarshal(bytes, message)
+		if err != nil {
+			fmt.Printf("Couldn't unmarshal message! %v\n", err)
+		}
+
+		switch message.Event.(type) {
+		case *bmore.Activity_Request:
+			fmt.Println("Application sent a http request")
+			handleHttpRequest(c, message.GetRequest())
+		case *bmore.Activity_Chat:
+			fmt.Println("Application setn a chat message")
+			handleChat(c, message.GetChat())
+		default:
+			fmt.Println("Unknown message from agent!")
+		}
 
 		c.conn.Close()
 		c.Server.onClientConnectionClosed(c, nil)
 	})
 
 	return server
+}
+
+func handleHttpRequest(c *Client, request *bmore.HttpRequest) {
+	fmt.Println("Handling http request...")
+	firewall := bmore.Block(request)
+	marshalled, err := proto.Marshal(firewall)
+	if err != nil {
+		fmt.Println("Unable to send response back to agent: %v\n", err)
+	} else {
+		fmt.Printf("Writing %d bytes to response...", len(marshalled))
+		writeAndFlush(c, marshalled)
+		fmt.Printf("done.")
+	}
+}
+
+func handleChat(c *Client, chat *bmore.Chat) {
+	conversation := &bmore.Conversation{SentAt: (time.Now().UnixNano() / 1000000)}
+	marshalled, err := proto.Marshal(conversation)
+	if err != nil {
+		fmt.Println("Unable to send conversation back to agent: %v\n", err)
+	} else {
+		writeAndFlush(c, marshalled)
+	}
+}
+
+func writeAndFlush(c *Client, bytes []byte) {
+	writer := bufio.NewWriter(c.conn)
+	written, err := writer.Write(bytes)
+	if err != nil {
+		fmt.Println("Unable to write response to buffered writer: %v\n", err)
+	} else {
+		fmt.Printf("Write %d bytes to buffered writer. Flushing...", written)
+		writer.Flush()
+		fmt.Println("done")
+	}
 }
