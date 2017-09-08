@@ -25,9 +25,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :request_method, :string, 4
     optional :host, :string, 5
     optional :port, :int32, 6
-    optional :context, :string, 7
-    map :parameters, :string, :message, 8, "bmore.KeyValue"
-    map :headers, :string, :message, 9, "bmore.KeyValue"
+    optional :script, :string, 7
+    optional :path, :string, 8
+    map :parameters, :string, :message, 9, "bmore.KeyValue"
+    map :headers, :string, :message, 10, "bmore.KeyValue"
   end
   add_message "bmore.KeyValue" do
     optional :key, :string, 1

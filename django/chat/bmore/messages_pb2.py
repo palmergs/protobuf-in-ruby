@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='messages.proto',
   package='bmore',
   syntax='proto3',
-  serialized_pb=_b('\n\x0emessages.proto\x12\x05\x62more\"\x90\x01\n\x08\x41\x63tivity\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x16\n\x0emessage_number\x18\x02 \x01(\x05\x12\x0e\n\x06sender\x18\x03 \x01(\t\x12%\n\x07request\x18\x04 \x01(\x0b\x32\x12.bmore.HttpRequestH\x00\x12\x1b\n\x04\x63hat\x18\x05 \x01(\x0b\x32\x0b.bmore.ChatH\x00\x42\x07\n\x05\x65vent\"\x1c\n\x08\x46irewall\x12\x10\n\x08\x62lock_it\x18\x01 \x01(\x08\";\n\x0c\x43onversation\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x1a\n\x05\x63hats\x18\x02 \x03(\x0b\x32\x0b.bmore.Chat\"\xcd\x02\n\x0bHttpRequest\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x16\n\x0erequest_method\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\x05\x12\x0f\n\x07\x63ontext\x18\x07 \x01(\t\x12\x36\n\nparameters\x18\x08 \x03(\x0b\x32\".bmore.HttpRequest.ParametersEntry\x12\x30\n\x07headers\x18\t \x03(\x0b\x32\x1f.bmore.HttpRequest.HeadersEntry\x1a\x42\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\x1a?\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\"&\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x03(\t\"\xe9\x01\n\x04\x43hat\x12\x0e\n\x06sender\x18\x01 \x01(\t\x12\x10\n\x08receiver\x18\x02 \x01(\t\x12\x0c\n\x04text\x18\x03 \x01(\t\x12&\n\x08priority\x18\x05 \x01(\x0e\x32\x14.bmore.Chat.Priority\x12-\n\x0c\x63ontent_type\x18\x06 \x01(\x0e\x32\x17.bmore.Chat.ContentType\")\n\x08Priority\x12\x07\n\x03LOW\x10\x00\x12\n\n\x06MEDIUM\x10\x01\x12\x08\n\x04HIGH\x10\x02\"/\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\x08\n\x04HTML\x10\x01\x12\x0c\n\x08MARKDOWN\x10\x02\x62\x06proto3')
+  serialized_pb=_b('\n\x0emessages.proto\x12\x05\x62more\"\x90\x01\n\x08\x41\x63tivity\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x16\n\x0emessage_number\x18\x02 \x01(\x05\x12\x0e\n\x06sender\x18\x03 \x01(\t\x12%\n\x07request\x18\x04 \x01(\x0b\x32\x12.bmore.HttpRequestH\x00\x12\x1b\n\x04\x63hat\x18\x05 \x01(\x0b\x32\x0b.bmore.ChatH\x00\x42\x07\n\x05\x65vent\"\x1c\n\x08\x46irewall\x12\x10\n\x08\x62lock_it\x18\x01 \x01(\x08\";\n\x0c\x43onversation\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x1a\n\x05\x63hats\x18\x02 \x03(\x0b\x32\x0b.bmore.Chat\"\xda\x02\n\x0bHttpRequest\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x16\n\x0erequest_method\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\x05\x12\x0e\n\x06script\x18\x07 \x01(\t\x12\x0c\n\x04path\x18\x08 \x01(\t\x12\x36\n\nparameters\x18\t \x03(\x0b\x32\".bmore.HttpRequest.ParametersEntry\x12\x30\n\x07headers\x18\n \x03(\x0b\x32\x1f.bmore.HttpRequest.HeadersEntry\x1a\x42\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\x1a?\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\"&\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x03(\t\"\xe9\x01\n\x04\x43hat\x12\x0e\n\x06sender\x18\x01 \x01(\t\x12\x10\n\x08receiver\x18\x02 \x01(\t\x12\x0c\n\x04text\x18\x03 \x01(\t\x12&\n\x08priority\x18\x05 \x01(\x0e\x32\x14.bmore.Chat.Priority\x12-\n\x0c\x63ontent_type\x18\x06 \x01(\x0e\x32\x17.bmore.Chat.ContentType\")\n\x08Priority\x12\x07\n\x03LOW\x10\x00\x12\n\n\x06MEDIUM\x10\x01\x12\x08\n\x04HIGH\x10\x02\"/\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\x08\n\x04HTML\x10\x01\x12\x0c\n\x08MARKDOWN\x10\x02\x62\x06proto3')
 )
 
 
@@ -45,8 +45,8 @@ _CHAT_PRIORITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=783,
-  serialized_end=824,
+  serialized_start=796,
+  serialized_end=837,
 )
 _sym_db.RegisterEnumDescriptor(_CHAT_PRIORITY)
 
@@ -71,8 +71,8 @@ _CHAT_CONTENTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=826,
-  serialized_end=873,
+  serialized_start=839,
+  serialized_end=886,
 )
 _sym_db.RegisterEnumDescriptor(_CHAT_CONTENTTYPE)
 
@@ -241,8 +241,8 @@ _HTTPREQUEST_PARAMETERSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=466,
-  serialized_end=532,
+  serialized_start=479,
+  serialized_end=545,
 )
 
 _HTTPREQUEST_HEADERSENTRY = _descriptor.Descriptor(
@@ -278,8 +278,8 @@ _HTTPREQUEST_HEADERSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=534,
-  serialized_end=597,
+  serialized_start=547,
+  serialized_end=610,
 )
 
 _HTTPREQUEST = _descriptor.Descriptor(
@@ -318,22 +318,29 @@ _HTTPREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='context', full_name='bmore.HttpRequest.context', index=4,
+      name='script', full_name='bmore.HttpRequest.script', index=4,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='parameters', full_name='bmore.HttpRequest.parameters', index=5,
-      number=8, type=11, cpp_type=10, label=3,
+      name='path', full_name='bmore.HttpRequest.path', index=5,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='parameters', full_name='bmore.HttpRequest.parameters', index=6,
+      number=9, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='headers', full_name='bmore.HttpRequest.headers', index=6,
-      number=9, type=11, cpp_type=10, label=3,
+      name='headers', full_name='bmore.HttpRequest.headers', index=7,
+      number=10, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -351,7 +358,7 @@ _HTTPREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=264,
-  serialized_end=597,
+  serialized_end=610,
 )
 
 
@@ -388,8 +395,8 @@ _KEYVALUE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=599,
-  serialized_end=637,
+  serialized_start=612,
+  serialized_end=650,
 )
 
 
@@ -449,8 +456,8 @@ _CHAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=640,
-  serialized_end=873,
+  serialized_start=653,
+  serialized_end=886,
 )
 
 _ACTIVITY.fields_by_name['request'].message_type = _HTTPREQUEST

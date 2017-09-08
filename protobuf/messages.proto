@@ -26,9 +26,10 @@ message HttpRequest {
  string request_method = 4;
  string host = 5;
  int32 port = 6;
- string context = 7;
- map<string, bmore.KeyValue> parameters = 8;
- map<string, bmore.KeyValue> headers = 9; 
+ string script = 7;
+ string path = 8;
+ map<string, bmore.KeyValue> parameters = 9;
+ map<string, bmore.KeyValue> headers = 10; 
 }
 
 message KeyValue {

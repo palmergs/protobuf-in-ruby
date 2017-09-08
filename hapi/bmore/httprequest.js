@@ -63,7 +63,8 @@ proto.bmore.HttpRequest.toObject = function(includeInstance, msg) {
     requestMethod: jspb.Message.getFieldWithDefault(msg, 4, ""),
     host: jspb.Message.getFieldWithDefault(msg, 5, ""),
     port: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    context: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    script: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    path: jspb.Message.getFieldWithDefault(msg, 8, ""),
     parametersMap: (f = msg.getParametersMap()) ? f.toObject(includeInstance, proto.bmore.KeyValue.toObject) : [],
     headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, proto.bmore.KeyValue.toObject) : []
   };
@@ -120,15 +121,19 @@ proto.bmore.HttpRequest.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContext(value);
+      msg.setScript(value);
       break;
     case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPath(value);
+      break;
+    case 9:
       var value = msg.getParametersMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.bmore.KeyValue.deserializeBinaryFromReader);
          });
       break;
-    case 9:
+    case 10:
       var value = msg.getHeadersMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.bmore.KeyValue.deserializeBinaryFromReader);
@@ -190,20 +195,27 @@ proto.bmore.HttpRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getContext();
+  f = message.getScript();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
+  f = message.getPath();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
   f = message.getParametersMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(8, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.bmore.KeyValue.serializeBinaryToWriter);
+    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.bmore.KeyValue.serializeBinaryToWriter);
   }
   f = message.getHeadersMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.bmore.KeyValue.serializeBinaryToWriter);
+    f.serializeBinary(10, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.bmore.KeyValue.serializeBinaryToWriter);
   }
 };
 
@@ -269,29 +281,44 @@ proto.bmore.HttpRequest.prototype.setPort = function(value) {
 
 
 /**
- * optional string context = 7;
+ * optional string script = 7;
  * @return {string}
  */
-proto.bmore.HttpRequest.prototype.getContext = function() {
+proto.bmore.HttpRequest.prototype.getScript = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /** @param {string} value */
-proto.bmore.HttpRequest.prototype.setContext = function(value) {
+proto.bmore.HttpRequest.prototype.setScript = function(value) {
   jspb.Message.setField(this, 7, value);
 };
 
 
 /**
- * map<string, KeyValue> parameters = 8;
+ * optional string path = 8;
+ * @return {string}
+ */
+proto.bmore.HttpRequest.prototype.getPath = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.bmore.HttpRequest.prototype.setPath = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * map<string, KeyValue> parameters = 9;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.bmore.KeyValue>}
  */
 proto.bmore.HttpRequest.prototype.getParametersMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.bmore.KeyValue>} */ (
-      jspb.Message.getMapField(this, 8, opt_noLazyCreate,
+      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
       proto.bmore.KeyValue));
 };
 
@@ -302,14 +329,14 @@ proto.bmore.HttpRequest.prototype.clearParametersMap = function() {
 
 
 /**
- * map<string, KeyValue> headers = 9;
+ * map<string, KeyValue> headers = 10;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.bmore.KeyValue>}
  */
 proto.bmore.HttpRequest.prototype.getHeadersMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.bmore.KeyValue>} */ (
-      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      jspb.Message.getMapField(this, 10, opt_noLazyCreate,
       proto.bmore.KeyValue));
 };
 
