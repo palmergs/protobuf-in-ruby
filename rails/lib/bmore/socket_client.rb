@@ -1,7 +1,7 @@
 require 'bmore/messages_pb'
 require 'pp'
 
-class BmoreClient
+class Bmore::SocketClient
 
   attr_reader :host, :port
 

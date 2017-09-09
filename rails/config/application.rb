@@ -16,7 +16,7 @@ module Bmore
     # -- all .rb files in that directory are automatically loaded.
 
     # There are better ways of doing this (e.g. Railties) but I'm in a hurry
-    require 'bmore_middleware'
-    config.middleware.use BmoreMiddleware
+    require 'bmore/middleware'
+    config.middleware.use Bmore::Middleware
   end
 end

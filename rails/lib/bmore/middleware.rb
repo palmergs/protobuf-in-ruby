@@ -1,15 +1,15 @@
 require 'rack'
 require 'pp'
 require 'bmore/messages_pb'
-require 'bmore_client'
+require 'bmore/socket_client'
 
-class BmoreMiddleware
+class Bmore::Middleware
 
   attr_reader :app, :client
 
   def initialize app
     @app = app
-    @client = BmoreClient.new
+    @client = Bmore::SocketClient.new
   end
 
   def call env
