@@ -47,16 +47,6 @@ func (c *Client) listen() {
 	}
 }
 
-//func (c *Client) Send(message string) error {
-//	_, err := c.conn.Write([]byte(message))
-//	return err
-//}
-
-//func (c *Client) SendBytes(b []byte) error {
-//	_, err := c.conn.Write(b)
-//	return err
-//}
-
 func (c *Client) Conn() net.Conn {
 	return c.conn
 }
@@ -118,7 +108,7 @@ func New(context *bmore.Context) *server {
 			fmt.Println("Application sent a http request")
 			handleHttpRequest(c, message.GetRequest())
 		case *bmore.Activity_Chat:
-			fmt.Println("Application setn a chat message")
+			fmt.Println("Application sent a chat message")
 			handleChat(c, message.GetChat())
 		default:
 			fmt.Println("Unknown message from agent!")
@@ -138,7 +128,6 @@ func handleHttpRequest(c *Client, request *bmore.HttpRequest) {
 	if err != nil {
 		fmt.Println("Unable to send response back to agent: %v\n", err)
 	} else {
-		fmt.Printf("Writing %d bytes to response...", len(marshalled))
 		writeAndFlush(c, marshalled)
 		fmt.Printf("done.")
 	}
@@ -160,8 +149,6 @@ func writeAndFlush(c *Client, bytes []byte) {
 	if err != nil {
 		fmt.Println("Unable to write response to buffered writer: %v\n", err)
 	} else {
-		fmt.Printf("Write %d bytes to buffered writer. Flushing...", written)
 		writer.Flush()
-		fmt.Println("done")
 	}
 }
