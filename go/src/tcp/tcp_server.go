@@ -3,7 +3,7 @@ package tcp
 import (
 	"bufio"
 	"bytes"
-	"chat/bmore"
+	"github.com/palmergs/protobuf-in-ruby/bmore"
 	"fmt"
 	"github.com/golang/protobuf/proto"
 	"log"

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"chat/bmore"
-	"chat/tcp"
+	"github.com/palmergs/protobuf-in-ruby/bmore"
+	"github.com/palmergs/protobuf-in-ruby/tcp"
 	"fmt"
 	"log"
 )
