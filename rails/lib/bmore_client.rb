@@ -14,7 +14,7 @@ class BmoreClient
   def block? request
     message = build_from(request)
     response = send_message(message, Bmore::Firewall)
-    response.block_it
+    response ? response.block_it : false
   end
 
   def say chat
@@ -27,7 +27,6 @@ class BmoreClient
   end
 
   def build_from event
-pp "event = #{ event } #{ event.class }"
     activity = Bmore::Activity.new(sent_at: time_ms, 
         message_number: (@messages_sent += 1),
         sender: 'Rails')
@@ -52,8 +51,10 @@ pp "event = #{ event } #{ event.class }"
 
     response = socket.read
     decoded = expected_response.decode(response)
-pp "decoded message was #{ decoded.inspect } #{ decoded.class }"
     decoded
+  rescue => e
+    pp "Unable to send message :: #{ e }"
+    nil
   ensure
     socket.close if socket
   end
