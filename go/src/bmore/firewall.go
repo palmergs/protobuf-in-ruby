@@ -33,9 +33,11 @@ func blockByIp(request *HttpRequest) bool {
 
 func blockByParam(request *HttpRequest) bool {
 	fmt.Println("checking for blacklisted parameter")
+  fmt.Printf("Parameters are %v\n", request.Parameters)
 	pair := request.Parameters["malware"]
 	if pair != nil {
 		for _, value := range pair.Value {
+      fmt.Printf("  examining %v (%v)\n", pair, value)
 			if value == "true" {
 				return true
 			}

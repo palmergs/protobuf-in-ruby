@@ -3,7 +3,7 @@ import select
 import os
 import io
 import sys
-from chat.bmore.messages_pb2 import HttpRequest, KeyValue, Firewall
+from chat.bmore.messages_pb2 import Activity, HttpRequest, KeyValue, Firewall
 from cgi import parse_qs, escape
 from django.http import HttpResponse
 
@@ -15,38 +15,39 @@ class BmoreMiddleware(object):
 
     def __call__(self, environ, start_response):
         print("In BmoreMiddleware call...")
-        http_request = self.build_http_request(environ)
-        response = self.send_message(http_request)
+        message = self.build_message_from(environ)
+        response = self.send_message(message)
         if response.block_it:
             start_response("403 Not Permitted", [("content-type", "text/plain")])
             return [ b'BOOM!' ]
         else:
             return self.app(environ, start_response)
 
-    def build_http_request(self, environ):
-        req = HttpRequest()
-        req.request_method = environ.get('REQUEST_METHOD', "GET")
-        req.host = environ.get('SERVER_NAME', "")
-        req.port = int(environ.get('SERVER_PORT', "0"))
-        req.script = environ.get('SCRIPT_NAME', "")
-        req.path = environ.get("PATH_INFO", "")
-        req.ip = environ.get('REMOTE_ADDR', "")
+    def build_message_from(self, environ):
+        activity = Activity()
+        activity.request.request_method = environ.get('REQUEST_METHOD', "GET")
+        activity.request.host = environ.get('SERVER_NAME', "")
+        activity.request.port = 8000 # int(environ.get('SERVER_PORT', "0"))
+        activity.request.script = environ.get('SCRIPT_NAME', "")
+        activity.request.path = environ.get("PATH_INFO", "")
+        activity.request.ip = environ.get('REMOTE_ADDR', "")
         
         d = parse_qs(environ['QUERY_STRING'])
         for key in d:
-            req.parameters[key].key = key
+            activity.request.parameters[key].key = key
             for v in d[key]:
-                req.parameters[key].value.append(v)
+                activity.request.parameters[key].value.append(v)
 
-        return req
+        return activity
 
     def send_message(self, message):
-        print(message)
+        print(message)        
+        
         packed = message.SerializeToString()
-        print(packed)
         try:
             sock = self.generate_socket()
-            sock.send(packed)
+            count = sock.send(packed)
+            print("I think I sent...", count)
             received = self.receive_data(sock)
 
             firewall = Firewall()
