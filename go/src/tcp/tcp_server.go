@@ -95,7 +95,7 @@ func New(context *bmore.Context) *server {
 	})
 
 	server.OnNewMessage(func(c *Client, bytes []byte) {
-		fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
+  fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
 
 		message := &bmore.Activity{}
 		err := proto.Unmarshal(bytes, message)
