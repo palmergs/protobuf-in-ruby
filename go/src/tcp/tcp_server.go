@@ -145,7 +145,7 @@ func handleChat(c *Client, chat *bmore.Chat) {
 
 func writeAndFlush(c *Client, bytes []byte) {
 	writer := bufio.NewWriter(c.conn)
-	written, err := writer.Write(bytes)
+	_, err := writer.Write(bytes)
 	if err != nil {
 		fmt.Println("Unable to write response to buffered writer: %v\n", err)
 	} else {
