@@ -41,6 +41,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :count, :uint32, 4
     optional :priority, :enum, 5, "bmore.Chat.Priority"
     optional :content_type, :enum, 6, "bmore.Chat.ContentType"
+    optional :emoticon, :message, 7, "bmore.Emoticon"
+    repeated :tags, :string, 8
   end
   add_enum "bmore.Chat.Priority" do
     value :LOW, 0
@@ -51,6 +53,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :TEXT, 0
     value :HTML, 1
     value :MARKDOWN, 2
+  end
+  add_message "bmore.Emoticon" do
+    optional :name, :string, 1
   end
 end
 
@@ -63,4 +68,5 @@ module Bmore
   Chat = Google::Protobuf::DescriptorPool.generated_pool.lookup("bmore.Chat").msgclass
   Chat::Priority = Google::Protobuf::DescriptorPool.generated_pool.lookup("bmore.Chat.Priority").enummodule
   Chat::ContentType = Google::Protobuf::DescriptorPool.generated_pool.lookup("bmore.Chat.ContentType").enummodule
+  Emoticon = Google::Protobuf::DescriptorPool.generated_pool.lookup("bmore.Emoticon").msgclass
 end

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='messages.proto',
   package='bmore',
   syntax='proto3',
-  serialized_pb=_b('\n\x0emessages.proto\x12\x05\x62more\"\x90\x01\n\x08\x41\x63tivity\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x16\n\x0emessage_number\x18\x02 \x01(\x05\x12\x0e\n\x06sender\x18\x03 \x01(\t\x12%\n\x07request\x18\x04 \x01(\x0b\x32\x12.bmore.HttpRequestH\x00\x12\x1b\n\x04\x63hat\x18\x05 \x01(\x0b\x32\x0b.bmore.ChatH\x00\x42\x07\n\x05\x65vent\"\x1c\n\x08\x46irewall\x12\x10\n\x08\x62lock_it\x18\x01 \x01(\x08\";\n\x0c\x43onversation\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x1a\n\x05\x63hats\x18\x02 \x03(\x0b\x32\x0b.bmore.Chat\"\xda\x02\n\x0bHttpRequest\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x16\n\x0erequest_method\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\x05\x12\x0e\n\x06script\x18\x07 \x01(\t\x12\x0c\n\x04path\x18\x08 \x01(\t\x12\x36\n\nparameters\x18\t \x03(\x0b\x32\".bmore.HttpRequest.ParametersEntry\x12\x30\n\x07headers\x18\n \x03(\x0b\x32\x1f.bmore.HttpRequest.HeadersEntry\x1a\x42\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\x1a?\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\"&\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x03(\t\"\xf8\x01\n\x04\x43hat\x12\x0e\n\x06sender\x18\x01 \x01(\t\x12\x10\n\x08receiver\x18\x02 \x01(\t\x12\x0c\n\x04text\x18\x03 \x01(\t\x12\r\n\x05\x63ount\x18\x04 \x01(\r\x12&\n\x08priority\x18\x05 \x01(\x0e\x32\x14.bmore.Chat.Priority\x12-\n\x0c\x63ontent_type\x18\x06 \x01(\x0e\x32\x17.bmore.Chat.ContentType\")\n\x08Priority\x12\x07\n\x03LOW\x10\x00\x12\n\n\x06MEDIUM\x10\x01\x12\x08\n\x04HIGH\x10\x02\"/\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\x08\n\x04HTML\x10\x01\x12\x0c\n\x08MARKDOWN\x10\x02\x62\x06proto3')
+  serialized_pb=_b('\n\x0emessages.proto\x12\x05\x62more\"\x90\x01\n\x08\x41\x63tivity\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x16\n\x0emessage_number\x18\x02 \x01(\x05\x12\x0e\n\x06sender\x18\x03 \x01(\t\x12%\n\x07request\x18\x04 \x01(\x0b\x32\x12.bmore.HttpRequestH\x00\x12\x1b\n\x04\x63hat\x18\x05 \x01(\x0b\x32\x0b.bmore.ChatH\x00\x42\x07\n\x05\x65vent\"\x1c\n\x08\x46irewall\x12\x10\n\x08\x62lock_it\x18\x01 \x01(\x08\";\n\x0c\x43onversation\x12\x0f\n\x07sent_at\x18\x01 \x01(\x03\x12\x1a\n\x05\x63hats\x18\x02 \x03(\x0b\x32\x0b.bmore.Chat\"\xda\x02\n\x0bHttpRequest\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x16\n\x0erequest_method\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\x05\x12\x0e\n\x06script\x18\x07 \x01(\t\x12\x0c\n\x04path\x18\x08 \x01(\t\x12\x36\n\nparameters\x18\t \x03(\x0b\x32\".bmore.HttpRequest.ParametersEntry\x12\x30\n\x07headers\x18\n \x03(\x0b\x32\x1f.bmore.HttpRequest.HeadersEntry\x1a\x42\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\x1a?\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.bmore.KeyValue:\x02\x38\x01\"&\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x03(\t\"\xa9\x02\n\x04\x43hat\x12\x0e\n\x06sender\x18\x01 \x01(\t\x12\x10\n\x08receiver\x18\x02 \x01(\t\x12\x0c\n\x04text\x18\x03 \x01(\t\x12\r\n\x05\x63ount\x18\x04 \x01(\r\x12&\n\x08priority\x18\x05 \x01(\x0e\x32\x14.bmore.Chat.Priority\x12-\n\x0c\x63ontent_type\x18\x06 \x01(\x0e\x32\x17.bmore.Chat.ContentType\x12!\n\x08\x65moticon\x18\x07 \x01(\x0b\x32\x0f.bmore.Emoticon\x12\x0c\n\x04tags\x18\x08 \x03(\t\")\n\x08Priority\x12\x07\n\x03LOW\x10\x00\x12\n\n\x06MEDIUM\x10\x01\x12\x08\n\x04HIGH\x10\x02\"/\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\x08\n\x04HTML\x10\x01\x12\x0c\n\x08MARKDOWN\x10\x02\"\x18\n\x08\x45moticon\x12\x0c\n\x04name\x18\x01 \x01(\tb\x06proto3')
 )
 
 
@@ -45,8 +45,8 @@ _CHAT_PRIORITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=811,
-  serialized_end=852,
+  serialized_start=860,
+  serialized_end=901,
 )
 _sym_db.RegisterEnumDescriptor(_CHAT_PRIORITY)
 
@@ -71,8 +71,8 @@ _CHAT_CONTENTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=854,
-  serialized_end=901,
+  serialized_start=903,
+  serialized_end=950,
 )
 _sym_db.RegisterEnumDescriptor(_CHAT_CONTENTTYPE)
 
@@ -449,6 +449,20 @@ _CHAT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='emoticon', full_name='bmore.Chat.emoticon', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='tags', full_name='bmore.Chat.tags', index=7,
+      number=8, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -464,7 +478,38 @@ _CHAT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=653,
-  serialized_end=901,
+  serialized_end=950,
+)
+
+
+_EMOTICON = _descriptor.Descriptor(
+  name='Emoticon',
+  full_name='bmore.Emoticon',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='bmore.Emoticon.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=952,
+  serialized_end=976,
 )
 
 _ACTIVITY.fields_by_name['request'].message_type = _HTTPREQUEST
@@ -484,6 +529,7 @@ _HTTPREQUEST.fields_by_name['parameters'].message_type = _HTTPREQUEST_PARAMETERS
 _HTTPREQUEST.fields_by_name['headers'].message_type = _HTTPREQUEST_HEADERSENTRY
 _CHAT.fields_by_name['priority'].enum_type = _CHAT_PRIORITY
 _CHAT.fields_by_name['content_type'].enum_type = _CHAT_CONTENTTYPE
+_CHAT.fields_by_name['emoticon'].message_type = _EMOTICON
 _CHAT_PRIORITY.containing_type = _CHAT
 _CHAT_CONTENTTYPE.containing_type = _CHAT
 DESCRIPTOR.message_types_by_name['Activity'] = _ACTIVITY
@@ -492,6 +538,7 @@ DESCRIPTOR.message_types_by_name['Conversation'] = _CONVERSATION
 DESCRIPTOR.message_types_by_name['HttpRequest'] = _HTTPREQUEST
 DESCRIPTOR.message_types_by_name['KeyValue'] = _KEYVALUE
 DESCRIPTOR.message_types_by_name['Chat'] = _CHAT
+DESCRIPTOR.message_types_by_name['Emoticon'] = _EMOTICON
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Activity = _reflection.GeneratedProtocolMessageType('Activity', (_message.Message,), dict(
@@ -551,6 +598,13 @@ Chat = _reflection.GeneratedProtocolMessageType('Chat', (_message.Message,), dic
   # @@protoc_insertion_point(class_scope:bmore.Chat)
   ))
 _sym_db.RegisterMessage(Chat)
+
+Emoticon = _reflection.GeneratedProtocolMessageType('Emoticon', (_message.Message,), dict(
+  DESCRIPTOR = _EMOTICON,
+  __module__ = 'messages_pb2'
+  # @@protoc_insertion_point(class_scope:bmore.Emoticon)
+  ))
+_sym_db.RegisterMessage(Emoticon)
 
 
 _HTTPREQUEST_PARAMETERSENTRY.has_options = True

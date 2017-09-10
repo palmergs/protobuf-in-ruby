@@ -14,6 +14,7 @@ goog.provide('proto.bmore.Chat.Priority');
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
 goog.require('jspb.Message');
+goog.require('proto.bmore.Emoticon');
 
 
 /**
@@ -27,12 +28,19 @@ goog.require('jspb.Message');
  * @constructor
  */
 proto.bmore.Chat = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.bmore.Chat.repeatedFields_, null);
 };
 goog.inherits(proto.bmore.Chat, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.bmore.Chat.displayName = 'proto.bmore.Chat';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.bmore.Chat.repeatedFields_ = [8];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -67,7 +75,9 @@ proto.bmore.Chat.toObject = function(includeInstance, msg) {
     text: jspb.Message.getFieldWithDefault(msg, 3, ""),
     count: jspb.Message.getFieldWithDefault(msg, 4, 0),
     priority: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    contentType: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    contentType: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    emoticon: (f = msg.getEmoticon()) && proto.bmore.Emoticon.toObject(includeInstance, f),
+    tagsList: jspb.Message.getRepeatedField(msg, 8)
   };
 
   if (includeInstance) {
@@ -127,6 +137,15 @@ proto.bmore.Chat.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {!proto.bmore.Chat.ContentType} */ (reader.readEnum());
       msg.setContentType(value);
+      break;
+    case 7:
+      var value = new proto.bmore.Emoticon;
+      reader.readMessage(value,proto.bmore.Emoticon.deserializeBinaryFromReader);
+      msg.setEmoticon(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTags(value);
       break;
     default:
       reader.skipField();
@@ -196,6 +215,21 @@ proto.bmore.Chat.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       6,
+      f
+    );
+  }
+  f = message.getEmoticon();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.bmore.Emoticon.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      8,
       f
     );
   }
@@ -307,6 +341,65 @@ proto.bmore.Chat.prototype.getContentType = function() {
 /** @param {!proto.bmore.Chat.ContentType} value */
 proto.bmore.Chat.prototype.setContentType = function(value) {
   jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional Emoticon emoticon = 7;
+ * @return {?proto.bmore.Emoticon}
+ */
+proto.bmore.Chat.prototype.getEmoticon = function() {
+  return /** @type{?proto.bmore.Emoticon} */ (
+    jspb.Message.getWrapperField(this, proto.bmore.Emoticon, 7));
+};
+
+
+/** @param {?proto.bmore.Emoticon|undefined} value */
+proto.bmore.Chat.prototype.setEmoticon = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.bmore.Chat.prototype.clearEmoticon = function() {
+  this.setEmoticon(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.bmore.Chat.prototype.hasEmoticon = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * repeated string tags = 8;
+ * @return {!Array.<string>}
+ */
+proto.bmore.Chat.prototype.getTagsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 8));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.bmore.Chat.prototype.setTagsList = function(value) {
+  jspb.Message.setField(this, 8, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.bmore.Chat.prototype.addTags = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 8, value, opt_index);
+};
+
+
+proto.bmore.Chat.prototype.clearTagsList = function() {
+  this.setTagsList([]);
 };
 
 

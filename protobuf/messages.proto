@@ -56,4 +56,10 @@ message Chat {
   uint32 count = 4;
   bmore.Chat.Priority priority = 5;
   bmore.Chat.ContentType content_type = 6;
+  bmore.Emoticon emoticon = 7;
+  repeated string tags = 8;
+}
+
+message Emoticon {
+  string name = 1;
 }
