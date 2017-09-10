@@ -41,19 +41,31 @@ class BmoreMiddleware(object):
         return activity
 
     def send_message(self, message):
-        print(message)        
-        
         packed = message.SerializeToString()
         try:
-            sock = self.generate_socket()
-            count = sock.send(packed)
-            print("I think I sent...", count)
-            received = self.receive_data(sock)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect(('localhost', 35678))
+            sock.setblocking(True)
+
+            print("About to send...")
+            sock.sendall(packed)
+            
+            buf = bytearray()
+            buf_size = 4096
+            while True:
+                readable, _, _ = select.select([sock], [], [sock])
+                part = readable[0].recv(buf_size)
+                if len(part) > 0:
+                    print("Received...", part)
+                    buf.extend(part)
+
+                if len(part) < buf_size:
+                    break
 
             firewall = Firewall()
-            firewall.ParseFromString(received)
-            print(firewall)
+            firewall.ParseFromString(buf)
             return firewall
+
         finally:
             if sock is not None:
                 sock.close()

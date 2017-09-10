@@ -3,9 +3,9 @@ package tcp
 import (
 	"bufio"
 	"bytes"
-	"github.com/palmergs/protobuf-in-ruby/bmore"
 	"fmt"
 	"github.com/golang/protobuf/proto"
+	"github.com/palmergs/protobuf-in-ruby/bmore"
 	"log"
 	"net"
 	"time"
@@ -37,7 +37,10 @@ func (c *Client) listen() {
 			buffer.Write(tmp)
 		}
 
-		if err != nil {
+		// NOTE: this simple server has a nasty bug... if the length of the sent
+		// data is exactly 4096 bytes then it will assume there's more data to read
+		// and will hang while it waits.
+		if err != nil || count < 4096 {
 			if buffer.Len() > 0 {
 				// process the message (truncated to the actual number of bytes received)
 				c.Server.onNewMessage(c, buffer.Bytes()[:total])
@@ -95,7 +98,7 @@ func New(context *bmore.Context) *server {
 	})
 
 	server.OnNewMessage(func(c *Client, bytes []byte) {
-  fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
+		fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
 
 		message := &bmore.Activity{}
 		err := proto.Unmarshal(bytes, message)
