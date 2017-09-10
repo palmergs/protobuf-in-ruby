@@ -3,9 +3,9 @@ package tcp
 import (
 	"bufio"
 	"bytes"
-	"github.com/palmergs/protobuf-in-ruby/bmore"
 	"fmt"
 	"github.com/golang/protobuf/proto"
+	"github.com/palmergs/protobuf-in-ruby/bmore"
 	"log"
 	"net"
 	"time"
@@ -95,7 +95,7 @@ func New(context *bmore.Context) *server {
 	})
 
 	server.OnNewMessage(func(c *Client, bytes []byte) {
-  fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
+		fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
 
 		message := &bmore.Activity{}
 		err := proto.Unmarshal(bytes, message)
