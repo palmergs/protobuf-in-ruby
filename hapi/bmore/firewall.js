@@ -1,15 +1,17 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
 
 goog.provide('proto.bmore.Firewall');
 
-goog.require('jspb.Message');
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
+goog.require('jspb.Message');
 
 
 /**
@@ -54,6 +56,7 @@ proto.bmore.Firewall.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.bmore.Firewall} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.Firewall.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -123,6 +126,7 @@ proto.bmore.Firewall.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.bmore.Firewall} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.Firewall.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

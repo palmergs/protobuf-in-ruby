@@ -1,16 +1,18 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
 
 goog.provide('proto.bmore.HttpRequest');
 
-goog.require('jspb.Message');
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
 goog.require('jspb.Map');
+goog.require('jspb.Message');
 goog.require('proto.bmore.KeyValue');
 
 
@@ -56,6 +58,7 @@ proto.bmore.HttpRequest.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.bmore.HttpRequest} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.HttpRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -164,6 +167,7 @@ proto.bmore.HttpRequest.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.bmore.HttpRequest} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.HttpRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

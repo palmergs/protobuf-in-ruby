@@ -38,6 +38,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :sender, :string, 1
     optional :receiver, :string, 2
     optional :text, :string, 3
+    optional :count, :uint32, 4
     optional :priority, :enum, 5, "bmore.Chat.Priority"
     optional :content_type, :enum, 6, "bmore.Chat.ContentType"
   end

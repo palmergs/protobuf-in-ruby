@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -9,9 +11,9 @@ goog.provide('proto.bmore.Chat');
 goog.provide('proto.bmore.Chat.ContentType');
 goog.provide('proto.bmore.Chat.Priority');
 
-goog.require('jspb.Message');
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
+goog.require('jspb.Message');
 
 
 /**
@@ -56,12 +58,14 @@ proto.bmore.Chat.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.bmore.Chat} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.Chat.toObject = function(includeInstance, msg) {
   var f, obj = {
     sender: jspb.Message.getFieldWithDefault(msg, 1, ""),
     receiver: jspb.Message.getFieldWithDefault(msg, 2, ""),
     text: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 4, 0),
     priority: jspb.Message.getFieldWithDefault(msg, 5, 0),
     contentType: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
@@ -112,6 +116,10 @@ proto.bmore.Chat.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setText(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCount(value);
+      break;
     case 5:
       var value = /** @type {!proto.bmore.Chat.Priority} */ (reader.readEnum());
       msg.setPriority(value);
@@ -145,6 +153,7 @@ proto.bmore.Chat.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.bmore.Chat} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.bmore.Chat.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -166,6 +175,13 @@ proto.bmore.Chat.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
       f
     );
   }
@@ -246,6 +262,21 @@ proto.bmore.Chat.prototype.getText = function() {
 /** @param {string} value */
 proto.bmore.Chat.prototype.setText = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional uint32 count = 4;
+ * @return {number}
+ */
+proto.bmore.Chat.prototype.getCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.bmore.Chat.prototype.setCount = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 

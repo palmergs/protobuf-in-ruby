@@ -53,6 +53,7 @@ message Chat {
   string sender = 1;
   string receiver = 2;
   string text = 3;
+  uint32 count = 4;
   bmore.Chat.Priority priority = 5;
   bmore.Chat.ContentType content_type = 6;
 }
