@@ -41,11 +41,12 @@ Google Protobuf in Ruby
 
 * Proto v3
   * Structure
-    * `syntax="proto3";
+    * `syntax="proto3";`
     * CamelCase for Messages
     * underscore_case for fields
     * Converted to appropriate style for generated language
 
+    ```protobuf
 		syntax = "proto3";
 		
 		package bmore;
@@ -59,6 +60,7 @@ Google Protobuf in Ruby
 				bmore.Chat chat = 5;
 			}
 		}
+    ```
 
   * Numbered Tags
     * Identify the field
@@ -71,8 +73,10 @@ Google Protobuf in Ruby
       * All fields have default values
       * Attempting to set a scalar field to nil is a TypeError
 
+      ```ruby
       r = Bmore::HttpRequest.new
       r.ip = nil # => TypeError: Invalid argument for string field
+      ```
 
     * String
       * string
@@ -86,15 +90,19 @@ Google Protobuf in Ruby
       * Signed:
         * int32, int64, sint32, sint64, fixed32, fixed64, sfixed32, sfixed64
 
+        ```ruby
         chat = Bmore::Chat.new
         chat.count = 2**32+1 # => RangeError: integer 4294967297 too big to convert to `unsigned int'
+        ```
 
       * Unsigned:
         * uint32, uint64
         * Type is the same but enforced at runtime
 
+        ```ruby
         chat = Bmore::Chat.new
         chat.count = -1 # => Range Error: Assigning negative value to unsigned integer field.
+        ```
 
       * Bignum or Fixnum
       * Default to 0
@@ -115,23 +123,29 @@ Google Protobuf in Ruby
     * Beware of equality checks
       * "Recognized" enums are converted to symbols
 
+      ```ruby
       Bmore::Chat::Priority::MEDIUM # => 1
       chat = Bmore::Chat.new
       chat.priority = Bmore::Chat::Priority::MEDIUM
       chat.priority == Bmore::Chat::Priority::MEDIUM # => false!
       chat.priority # => :MEDIUM
+      ```
 
     * The generated Class has methods for converting enum fields values to symbols
 
+      ```ruby
       MyMessage::MyEnum.resolve(:VALUE) # => 1
       MyMessage::MuEnum.lookup(1) # => :VALUE
+      ```
 
   * Sub-message Fields
     * Unlike scalar fields can be set to nil
 
+    ```ruby
     chat = Bmore::Chat.new
     chat.emoticon # => nil
     chat.emoticon = Bmore::Emoticon.new(name: "smiley face")
+    ```
 
   * Lists
     * "repeated" keyword
@@ -140,6 +154,7 @@ Google Protobuf in Ruby
     * Scalar items can be added using `+=` 
     * Sub-message arrays must be added individually (bug?)
 
+    ```ruby
     chat = Bmore::Chat.new
     chat.tags << "wombat" # => ok
     chat.tags += [ "weasel", "marmot", "groundhog" ] # => ok
@@ -148,18 +163,22 @@ Google Protobuf in Ruby
     convo = Bmore::Conversation.new
     convo.chats += [ chat ] # => TypeError: Repeated field array has wrong message/enum class
     convo.chats << chat # => ok
+    ```
   
   * Oneof
     * Allows one sub-message to be set in a field
     * The specific field name is used
     * Setting a value removes any value previously set
 
+    ```ruby
     a = Bmore::Activity.new # => <Bmore::Activity: ... request: nil, chat: nil>
     a.chat = Bmore::Chat.new # => <Bmore::Activity: ... request: nil, chat: <Bmore::Chat: >
     a.request = Bmore::HttpRequest.new # => <Bmore::Activity: ... request: <Bmore::HttpRequest: >, chat: nil >
+    ```
 
     * There is no magic for setting the "oneof" field directly
 
+    ```ruby
     a = Bmore::Activity.new
     a.event # => nil
     a.chat = Bmore::Chat.new
@@ -167,6 +186,7 @@ Google Protobuf in Ruby
     a.request = Bmore::HttpRequest.new
     a.event # => :request
     a.event = Bmore::Chat.new # => RuntimeError: Oneof accessors are read-only.
+    ```
 
   * Maps and Sets
     * Keys must be strings or integral types
@@ -189,15 +209,18 @@ Google Protobuf in Ruby
   * `protoc` takes directory into account when generating code
     * can be overriden with --proto_path
 
-  protoc --ruby_out=rails/lib/bmore --python_out=django/chat/bmore --js_out=hapi/bmore --proto_path=protobuf protobuf/messages.proto
+    ```bash
+    protoc --ruby_out=rails/lib/bmore --python_out=django/chat/bmore --js_out=hapi/bmore --proto_path=protobuf protobuf/messages.proto
+    ```
 
   * Go
 		* Requires a special package
     * Can not be generated on the same call as other languages
 
+    ```bash
     PATH=~/go/bin:$PATH
     protoc --go_out=go/src/bmore --proto_path=protobuf protobuf/messages.proto
-
+    ```
 * Using Protobuf classes
   * gem "google-protobuf", "~> 3.4.0.2"
   * Pure ruby implementation available 
