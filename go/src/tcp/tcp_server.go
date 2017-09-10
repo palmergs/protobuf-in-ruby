@@ -37,7 +37,10 @@ func (c *Client) listen() {
 			buffer.Write(tmp)
 		}
 
-		if err != nil {
+		// NOTE: this simple server has a nasty bug... if the length of the sent
+		// data is exactly 4096 bytes then it will assume there's more data to read
+		// and will hang while it waits.
+		if err != nil || count < 4096 {
 			if buffer.Len() > 0 {
 				// process the message (truncated to the actual number of bytes received)
 				c.Server.onNewMessage(c, buffer.Bytes()[:total])
