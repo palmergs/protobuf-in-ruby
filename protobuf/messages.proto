@@ -19,6 +19,7 @@ message Firewall {
 message Conversation {
   int64 sent_at = 1;
   repeated bmore.Chat chats = 2;
+  repeated string tags = 3;
 }
 
 message HttpRequest {

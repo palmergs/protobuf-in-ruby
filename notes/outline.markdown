@@ -191,6 +191,15 @@ Google Protobuf in Ruby
   * Maps and Sets
     * Keys must be strings or integral types
     * Values may be any scalar or message type
+    * Use delete to delete key
+
+    ```ruby
+    hr = Bmore::HttpRequest.new
+    hr.parameters['test'] = Bmore::KeyValue.new
+    hr.parameters['test'] = nil # => <Bmore::HttpRequest: parameters: {"test"=>nil}
+    hr.parameters.delete('test') # => <Bmore::HttpRequest: parameters: {} 
+    ```
+
     * Sets (not native)
       * Implement a map< type >bool for strings or integral types
       * Sets of messages or floats will need a unique key
