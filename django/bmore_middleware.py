@@ -65,7 +65,8 @@ class BmoreMiddleware(object):
             firewall = Firewall()
             firewall.ParseFromString(buf)
             return firewall
-        except:
+        except Exception as ex:
+            print(ex)
             return Firewall(block_it=False)
         finally:
             if sock is not None:

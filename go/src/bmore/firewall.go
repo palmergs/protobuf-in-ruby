@@ -5,39 +5,49 @@ import (
 )
 
 func Block(request *HttpRequest) *Firewall {
+	printRequest(request)
+
 	if whitelisted(request) {
+		fmt.Println("SAFE (whitelist)")
 		return &Firewall{BlockIt: false}
 	}
 
 	if blockByIp(request) {
+		fmt.Println("BLOCKED (ip)")
 		return &Firewall{BlockIt: true}
 	}
 
 	if blockByParam(request) {
+		fmt.Println("BLOCKED (param)")
 		return &Firewall{BlockIt: true}
 	}
 
-	fmt.Println("No firewall rules matched")
+	fmt.Println("SAFE")
 	return &Firewall{BlockIt: false}
 }
 
+func printRequest(request *HttpRequest) {
+	fmt.Printf("ip:%v host:%v port:%v method:%v script:%v path:%v =>",
+		request.Ip,
+		request.Host,
+		request.Port,
+		request.RequestMethod,
+		request.Script,
+		request.Path)
+}
+
 func whitelisted(request *HttpRequest) bool {
-	fmt.Printf("checking for whitelisted path :: %v\n", request.Path)
 	return request.Path == "/secure"
 }
 
 func blockByIp(request *HttpRequest) bool {
-	fmt.Printf("checking for blacklisted ip :: %v\n", request.Ip)
 	return request.Ip == "123.123.123.123"
 }
 
 func blockByParam(request *HttpRequest) bool {
-	fmt.Println("checking for blacklisted parameter")
-  fmt.Printf("Parameters are %v\n", request.Parameters)
 	pair := request.Parameters["malware"]
 	if pair != nil {
 		for _, value := range pair.Value {
-      fmt.Printf("  examining %v (%v)\n", pair, value)
 			if value == "true" {
 				return true
 			}

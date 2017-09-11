@@ -32,7 +32,6 @@ func (c *Client) listen() {
 	for {
 		count, err := reader.Read(tmp)
 		if count > 0 {
-			fmt.Printf("Read %d bytes...\n", count)
 			total += count
 			buffer.Write(tmp)
 		}
@@ -90,15 +89,12 @@ func New(context *bmore.Context) *server {
 	log.Printf("Creating server with address: %v\n", address)
 	server := &server{context: context, address: address}
 	server.OnNewClient(func(c *Client) {
-		fmt.Println("A new client connected!")
 	})
 
 	server.OnClientConnectionClosed(func(c *Client, err error) {
-		fmt.Printf("A client connection was closed! err=%v\n", err)
 	})
 
 	server.OnNewMessage(func(c *Client, bytes []byte) {
-		fmt.Printf("Message received: %v [%d]\n", bytes[0:10], len(bytes))
 
 		message := &bmore.Activity{}
 		err := proto.Unmarshal(bytes, message)
@@ -108,10 +104,8 @@ func New(context *bmore.Context) *server {
 
 		switch message.Event.(type) {
 		case *bmore.Activity_Request:
-			fmt.Println("Application sent a http request")
 			handleHttpRequest(c, message.GetRequest())
 		case *bmore.Activity_Chat:
-			fmt.Println("Application sent a chat message")
 			handleChat(c, message.GetChat())
 		default:
 			fmt.Println("Unknown message from agent!")
@@ -125,14 +119,12 @@ func New(context *bmore.Context) *server {
 }
 
 func handleHttpRequest(c *Client, request *bmore.HttpRequest) {
-	fmt.Println("Handling http request...")
 	firewall := bmore.Block(request)
 	marshalled, err := proto.Marshal(firewall)
 	if err != nil {
 		fmt.Println("Unable to send response back to agent: %v\n", err)
 	} else {
 		writeAndFlush(c, marshalled)
-		fmt.Printf("done.")
 	}
 }
 
