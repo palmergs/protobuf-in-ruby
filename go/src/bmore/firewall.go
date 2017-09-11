@@ -27,7 +27,7 @@ func Block(request *HttpRequest) *Firewall {
 }
 
 func printRequest(request *HttpRequest) {
-	fmt.Printf("ip:%v host:%v port:%v method:%v script:%v path:%v =>",
+	fmt.Printf("ip:%v host:%v port:%v method:%v script:%v path:%v => ",
 		request.Ip,
 		request.Host,
 		request.Port,

@@ -56,14 +56,13 @@ class BmoreMiddleware(object):
                 readable, _, _ = select.select([sock], [], [sock])
                 part = readable[0].recv(buf_size)
                 if len(part) > 0:
-                    print("Received...", part)
                     buf.extend(part)
 
                 if len(part) < buf_size:
                     break
 
             firewall = Firewall()
-            firewall.ParseFromString(buf)
+            firewall.ParseFromString(bytes(buf))
             return firewall
         except Exception as ex:
             print(ex)
