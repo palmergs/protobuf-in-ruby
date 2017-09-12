@@ -5,4 +5,4 @@ def index(request):
     return render(request, 'chat/index.html', {})
 
 def secure(request):
-    return HttpResponse("This is a secure page with no vulnerabilities.")
+    return render(request, 'chat/secure.html', {})
